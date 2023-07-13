@@ -188,7 +188,7 @@ public class User extends javax.swing.JFrame {
     int id = Integer.parseInt(CBID.getSelectedItem().toString());
     conn = DriverManager.getConnection(DB_URL, USER, PASS);
     
-    String sql = "SELECT * FROM users WHERE id = ?";
+    String sql = "SELECT * FROM user WHERE id = ?";
     PreparedStatement statement = conn.prepareStatement(sql);
     statement.setInt(1, id);
     
@@ -218,7 +218,7 @@ public class User extends javax.swing.JFrame {
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
         // Pengecekan kd_brg
-        String checkQuery = "SELECT * FROM users WHERE username = ?";
+        String checkQuery = "SELECT * FROM user WHERE username = ?";
         PreparedStatement checkStmt = conn.prepareStatement(checkQuery);        
         checkStmt.setString(1, user);        
         ResultSet rs = checkStmt.executeQuery();
@@ -236,7 +236,7 @@ public class User extends javax.swing.JFrame {
 
         // Operasi db
 
-        String sql = "INSERT INTO users (username,paswd) VALUES (?, ?)";
+        String sql = "INSERT INTO user (username,paswd) VALUES (?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, user);
         ps.setString(2, pass);
@@ -274,7 +274,7 @@ public class User extends javax.swing.JFrame {
 
         // Operasi db
         //String checkSql = "SELECT * FROM barang WHERE id = ?";
-        String sql = "UPDATE users set username=?, paswd= ? WHERE id =?";
+        String sql = "UPDATE user set username=?, paswd= ? WHERE id =?";
         PreparedStatement ps = conn.prepareStatement(sql);
         //PreparedStatement psc = conn.prepareStatement(checkSql);
         //psc.setInt(1, id);        "UPDATE uashotel set kode_kamar=?, nama= ?, jenis = ?, tanggal_masuk = ?, tanggal_keluar=? WHERE no_kamar=?";
@@ -361,7 +361,7 @@ public class User extends javax.swing.JFrame {
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT id FROM users");
+            rs = stmt.executeQuery("SELECT id FROM user");
             while(rs.next())
             {
                 CBID.addItem(rs.getString(1).toString());
